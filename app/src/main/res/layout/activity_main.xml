@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.michael.simpleplanner.MainActivity">
+
+    <Button
+        android:id="@+id/btn_push_notification"
+        style="@style/RoundButton"
+        android:text="@string/btn_push_notification"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_next_page2"
+        style="@style/RoundButton"
+        android:text="@string/btn_second_activity"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_push_notification"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_time_date" />
+
+    <TextView
+        android:id="@+id/tv_time_date"
+        style="@style/DateTime"
+        android:text="@string/tv_date_and_time"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

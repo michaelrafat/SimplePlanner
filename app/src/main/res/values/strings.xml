@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Simple Planner</string>
+    <string name="et_number_hint">Enter a Number</string>
+    <string name="btn_number_save">Save Number</string>
+    <string name="btn_return_last_record">Return Last Number</string>
+    <string name="btn_set_notification_time">Set Notification Time</string>
+    <string name="btn_back">Back</string>
+    <string name="tv_date_and_time">Date and Time</string>
+    <string name="btn_push_notification">Push Notification</string>
+    <string name="btn_second_activity">Second Activity</string>
+</resources>
