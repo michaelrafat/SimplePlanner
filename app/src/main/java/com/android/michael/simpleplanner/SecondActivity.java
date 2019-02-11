@@ -17,7 +17,6 @@ public class SecondActivity extends AppCompatActivity {
     private Button saveToDatabaseButton, selectLastDatabaseRecordButton, timePickerButton, backButton;
     private EditText planNumberEditText;
     private DateTimeUtils dateTimeUtils;
-    private DatabaseUtils databaseUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +26,6 @@ public class SecondActivity extends AppCompatActivity {
         initView();
 
         dateTimeUtils = new DateTimeUtils(this);
-        databaseUtils = new DatabaseUtils(this);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,10 +45,11 @@ public class SecondActivity extends AppCompatActivity {
                 if (!planNumber.isEmpty()) {
                     Plan plan = new Plan();
                     plan.setPlanNumber(planNumber);
-                    databaseUtils.insertPlan(plan);
+                    DatabaseUtils.insertPlan(plan, getApplicationContext());
                 } else {
                     planNumberEditText.setError("Empty Number... !");
-                    showToast("Please add Number to save!");
+                    Toast.makeText(getApplicationContext(), "Please add Number to save!", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -58,7 +57,7 @@ public class SecondActivity extends AppCompatActivity {
         selectLastDatabaseRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseUtils.getLastPlan();
+                DatabaseUtils.getLastPlan(getApplicationContext());
             }
         });
 
@@ -77,10 +76,6 @@ public class SecondActivity extends AppCompatActivity {
         timePickerButton = findViewById(R.id.btn_time_picker);
         backButton = findViewById(R.id.btn_back_to_first_page);
         planNumberEditText = findViewById(R.id.editText);
-    }
-
-    private void showToast(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override

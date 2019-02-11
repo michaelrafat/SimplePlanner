@@ -10,6 +10,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class DateTimeUtils {
 
@@ -21,7 +22,7 @@ public class DateTimeUtils {
 
     public DateTimeUtils(Context context) {
         this.context = context;
-        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+        simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS", Locale.ENGLISH);
     }
 
     public String getCurrentDateTime() {
@@ -59,8 +60,7 @@ public class DateTimeUtils {
 
     public String formatDate(Date date) {
 
-        String formattedDate = simpleDateFormat.format(date);
-        return formattedDate;
+        return simpleDateFormat.format(date);
     }
 
     public void setTimePicker() {

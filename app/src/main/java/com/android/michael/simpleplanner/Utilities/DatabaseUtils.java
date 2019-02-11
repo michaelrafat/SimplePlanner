@@ -9,13 +9,10 @@ import com.android.michael.simpleplanner.Database.PlanDatabase;
 
 public class DatabaseUtils {
 
-    private Context context;
-
-    public DatabaseUtils(Context context) {
-        this.context = context;
+    public DatabaseUtils() {
     }
 
-    public void insertPlan(Plan plan) {
+    public static void insertPlan(Plan plan, final Context context) {
 
         new AsyncTask<Plan, Plan, Void>() {
             @Override
@@ -32,7 +29,7 @@ public class DatabaseUtils {
         }.execute(plan);
     }
 
-    public Plan getLastPlan() {
+    public static Plan getLastPlan(final Context context) {
 
         final Plan[] lastPlan = {new Plan()};
 
@@ -40,18 +37,22 @@ public class DatabaseUtils {
 
             @Override
             protected Plan doInBackground(Plan... plans) {
-                Plan plan = PlanDatabase.getDatabase(context).planDao().getLastPlan();
-                return plan;
+                return PlanDatabase.getDatabase(context).planDao().getLastPlan();
             }
 
             @Override
             protected void onPostExecute(Plan plan) {
                 super.onPostExecute(plan);
                 lastPlan[0] = plan;
-                Toast.makeText(context, "Last Saved Number: " + plan.getPlanNumber(), Toast.LENGTH_LONG).show();
 
+                if (plan != null) {
+                    Toast.makeText(context, "Last Saved Number: " + plan.getPlanNumber(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Empty Database... No numbers found!", Toast.LENGTH_SHORT).show();
+                }
             }
         }.execute();
+
         return lastPlan[0];
     }
 }
